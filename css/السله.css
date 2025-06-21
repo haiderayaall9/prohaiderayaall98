@@ -1,0 +1,210 @@
+#cartModal .modal-dialog {
+  max-width: 700px;
+  margin: 80px auto;
+  transition: all 0.3s ease;
+}
+
+#cartModal .modal-content {
+  background: linear-gradient(135deg, #ffffff, #f9f9f9);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+  font-family: 'Tajawal', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+#cartModal .modal-header,
+#cartModal .modal-footer {
+  border: none;
+}
+
+#cartModal .modal-title {
+  font-size: 26px;
+  font-weight: bold;
+  color: #444;
+  text-shadow: 1px 1px #eee;
+}
+
+#cartItemsContainer {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
+
+/* عنصر السلة */
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 12px;
+  border-bottom: 1px solid #e6e6e6;
+  background-color: #fff;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  transition: background 0.2s ease;
+}
+#cartModal .btn-close {
+  position: absolute;
+  left: 30px;
+  top: 55px;
+  background-color: #ff4d4d;
+  color: white;
+  font-size: 20px;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: left;
+  opacity: 1;
+  transition: 0.3s ease;
+  z-index: 2;
+}
+
+#cartModal .btn-close:hover {
+  background-color: #e60000;
+  transform: scale(1.1);
+}
+
+.cart-item:hover {
+  background-color: #fef1e8;
+}
+
+.cart-item img {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.cart-item-details {
+  flex: 1;
+  text-align: center;
+}
+
+.cart-item-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.cart-item-quantity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-item-quantity button {
+  background: linear-gradient(145deg, #ffc400, #ff9800);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.cart-item-quantity button:hover {
+  transform: scale(1.15);
+}
+
+.cart-item-quantity span {
+  font-size: 18px;
+  font-weight: 500;
+  min-width: 26px;
+  text-align: center;
+  color: #555;
+    font-weight: bold;
+}
+
+.cart-item-price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #4CAF50;
+  width: 65px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#cartTotal {
+  font-weight: bold;
+  font-size: 19px;
+  color: #333;
+}
+
+#sendOrderBtn {
+  background: linear-gradient(145deg, #ff5722, #e64a19);
+  border: none;
+  padding: 10px 18px;
+  font-size: 15px;
+  border-radius: 8px;
+  color: white;
+  transition: background 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3);
+}
+
+#sendOrderBtn:hover {
+  background-color: #d84315;
+}
+
+/* موبايل */
+@media (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cart-item img {
+    margin-bottom: 10px;
+    max-width: 120px;
+  }
+
+  .cart-item-details {
+    margin-bottom: 10px;
+  }
+
+  .cart-item-price {
+    order: 3;
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #068a41;
+    width: 100%;
+    text-align: center;
+  }
+
+  .cart-item-quantity {
+    gap: 12px;
+  }
+
+  #sendOrderBtn {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  #cartModal .modal-dialog {
+    margin: 30px 10px;
+  }
+}
+
+/* تحكم في شريط التمرير للسلة */
+#cartItemsContainer::-webkit-scrollbar {
+  width: 6px;
+}
+#cartItemsContainer::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}

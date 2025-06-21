@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <title>سلة المشتريات</title>
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <style>
+    body { direction: rtl; padding: 20px; }
+    .cart-item { border-bottom: 1px solid #ddd; padding: 15px 0; display: flex; align-items: center; }
+    .cart-item img { width: 80px; height: 80px; object-fit: cover; margin-left: 20px; }
+    .cart-item-details { flex-grow: 1; }
+    .cart-item-qty { margin-left: 15px; }
+    .remove-btn { color: red; cursor: pointer; }
+    .total-price { font-weight: bold; font-size: 1.2em; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h2>سلة مشترياتك</h2>
+  <div id="cart-container"></div>
+  <div class="total-price" id="total-price"></div>
+  <button onclick="clearCart()" class="btn btn-danger">تفريغ السلة</button>
+  <a href="menu.html" class="btn btn-primary">العودة لقائمة الطعام</a>
+
+  <script>
+    function renderCart() {
+      const container = document.getElementById('cart-container');
+      const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+      if (cartItems.length === 0) {
+        container.innerHTML = '<p>السلة فارغة</p>';
+        document.getElementById('total-price').textContent = '';
+        return;
+      }
+
+      let total = 0;
+      container.innerHTML = '';
+
+      cartItems.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+
+        div.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <div class="cart-item-details">
+            <h5>${item.name}</h5>
+            <p>السعر: ${item.price}$</p>
+            <p>الكمية: ${item.quantity}</p>
+            <p>الإجمالي: ${itemTotal.toFixed(2)}$</p>
+          </div>
+          <div class="cart-item-qty">
+            <button onclick="removeItem(${index})" class="remove-btn">✖ إزالة</button>
+          </div>
+        `;
+
+        container.appendChild(div);
+      });
+
+      document.getElementById('total-price').textContent = `السعر الكلي: ${total.toFixed(2)}$`;
+    }
+
+    function removeItem(index) {
+      let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+      cartItems.splice(index, 1);
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      renderCart();
+    }
+
+    function clearCart() {
+      if (confirm('هل أنت متأكد من تفريغ السلة؟')) {
+        localStorage.removeItem('cartItems');
+        renderCart();
+      }
+    }
+
+    // عرض السلة عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', renderCart);
+  </script>
+</body>
+</html>

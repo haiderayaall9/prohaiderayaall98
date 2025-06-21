@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Feane</title>
+
+  <!-- Bootstrap & أسلوب التصميم -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" />
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/السله.css">
+
+
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <div class="bg-box">
+      <img src="images/hero-bg.jpg" alt="">
+    </div>
+
+    <!-- Header -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <span>حيدر عيال</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  mx-auto ">
+              <li class="nav-item"><a class="nav-link" href="index.html">القائمه الرئيسية </a></li>
+              <li class="nav-item active"><a class="nav-link" href="menu.html">قائمة الطعام</a></li>
+              <li class="nav-item"><a class="nav-link" href="about.html">نبذه عن الموقع</a></li>
+              <li class="nav-item"><a class="nav-link" href="book.html">حجز طاولة</a></li>
+            </ul>
+
+            <div class="user_option">
+              <a href="" class="user_link"><i class="fa fa-user" aria-hidden="true"></i></a>
+              <a href="#" class="cart_link" id="cartButton" data-toggle="modal" data-target="#cartModal">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <span id="cartCount" style="background:#28a745;color:#fff;padding:2px 6px;border-radius:50%;font-size:12px;position:absolute;top:8px;right:6px;display:none;">0</span>
+              </a>
+              
+              <form class="form-inline">
+                <button class="btn nav_search-btn" type="submit">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </form>
+
+
+              <a href="" class="order_online">طلبك ع الانترنت</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+  <!-- food section -->
+  <section class="food_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>اختيارك وعوافي ع كرشك</h2>
+      </div>
+
+      <ul class="filters_menu">
+        <li class="active" data-filter="*">الكل</li>
+        <li data-filter="بركر">بركر</li>
+        <li data-filter="بيتزا">بيتزا</li>
+        <li data-filter="معكرونه">معكرونه</li>
+        <li data-filter="بتيته">بتيته</li>
+      </ul>
+
+      <div class="filters-content">
+        <div class="row grid" id="food-list">
+          <!-- العناصر تضاف تلقائياً -->
+        </div>
+      </div>
+
+      <div class="btn-box">
+        <a href="#">عرض المزيد</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal نافذة السلة -->
+ <!-- ✅ Modal -->
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-cart" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cartModalLabel">السلة الخاصة بك</h5>
+        <button type="button" class="close ml-0" data-dismiss="modal" aria-label="إغلاق">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body" id="cartItemsContainer">
+        <p>السلة فارغة</p>
+      </div>
+
+      <div class="px-4">
+        <div class="delivery-options my-3">
+          <label>
+            <input type="radio" name="deliveryMethod" value="pickup" checked>
+            هل تستلم الطلب بنفسك من المطعم؟
+          </label>
+          <label class="ml-3">
+            <input type="radio" name="deliveryMethod" value="delivery">
+            خدمات التوصيل
+          </label>
+        </div>
+
+        <!-- ✅ pickupFields -->
+        <div id="pickupFields">
+          <div class="form-group">
+            <label>الاسم الثلاثي</label>
+            <input type="text" id="fullName" class="form-control">
+          </div>
+
+     <div class="form-group">
+  <label>المحافظة</label>
+  <select id="province" class="form-control">
+    <option value="">اختر المحافظة</option>
+    <option value="بغداد">بغداد</option>
+    <option value="البصرة">البصرة</option>
+    <option value="نينوى">نينوى</option>
+    <!-- أكمل الـ 19 محافظة -->
+  </select>
+</div>
+
+<div class="form-group">
+  <label>القضاء</label>
+  <select id="district" class="form-control" disabled></select>
+</div>
+
+<div class="form-group">
+  <label>الناحية</label>
+  <select id="subDistrict" class="form-control" disabled></select>
+</div>
+
+<div class="form-group">
+  <label>سعر التوصيل: <span id="deliveryPrice">0</span> د.ع</label>
+</div>
+
+
+          <div class="form-group">
+            <label>رقم الهاتف</label>
+            <input type="text" id="phone" class="form-control">
+          </div>
+
+          <!-- ✅ حقل الموقع مع الخيارات -->
+          <div class="form-group">
+            <label>الموقع</label>
+            <input type="text" id="location" class="form-control" placeholder="اختر نوع الإدخال..." readonly onclick="showLocationOptions()">
+
+            <div id="locationOptions" style="margin-top:10px; display:none;">
+              <button class="btn btn-outline-primary btn-sm mb-2" onclick="setLocationType('landmark')">📍 أقرب نقطة دالة</button>
+              <button class="btn btn-outline-success btn-sm mb-2" onclick="setLocationType('link')">🌐 رابط موقع من واتساب</button>
+
+              <input type="text" id="customLocationInput" class="form-control mt-2" placeholder="" oninput="updateLocationField()">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer d-flex justify-content-between align-items-center">
+        <div>
+          <strong>الإجمالي: $<span id="cartTotal">0.00</span></strong>
+        </div>
+        <button type="button" class="btn-send-order" id="sendOrderBtn">إرسال الطلب</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- footer -->
+  <footer class="footer_section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 footer-col">
+          <div class="footer_contact">
+            <h4>اتصل بنا</h4>
+            <div class="contact_link_box">
+              <a href=""><i class="fa fa-map-marker"></i><span>الموقع</span></a>
+              <a href=""><i class="fa fa-phone"></i><span>+01 1234567890</span></a>
+              <a href=""><i class="fa fa-envelope"></i><span>demo@gmail.com</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 footer-col">
+          <div class="footer_detail">
+            <a href="#" class="footer-logo">حيدر عيال</a>
+            <p>تم تصميم وبرمجة هذا الموقع من قبل المبرمج حيدر عيال.</p>
+            <div class="footer_social">
+              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-linkedin"></i></a>
+              <a href="#"><i class="fa fa-instagram"></i></a>
+              <a href="#"><i class="fa fa-pinterest"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 footer-col">
+          <h4>اوقات العمل</h4>
+          <p>كل يوم</p>
+          <p>10.00 Am -10.00 Pm</p>
+        </div>
+      </div>
+      <div class="footer-info">
+        <p>&copy; <span id="displayYear"></span> All Rights Reserved By Feane</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+
+ <script src="cart.js"></script>
+ <script>
+  // عناصر خيارات التوصيل
+const deliveryMethodRadios = document.getElementsByName("deliveryMethod");
+
+function toggleFieldsByDeliveryMethod() {
+  const pickupFields = document.getElementById("pickupFields");
+  const provinceGroup = document.querySelector("#province").closest(".form-group");
+  const districtGroup = document.querySelector("#district").closest(".form-group");
+  const subDistrictGroup = document.querySelector("#subDistrict").closest(".form-group");
+  const locationGroup = document.querySelector("#location").closest(".form-group");
+  const deliveryPriceGroup = document.getElementById("deliveryPrice").closest(".form-group");
+
+  let selectedMethod = Array.from(deliveryMethodRadios).find(r => r.checked)?.value;
+
+  if (selectedMethod === "pickup") {
+    // إظهار الاسم الثلاثي ورقم الهاتف فقط
+    // إخفاء باقي حقول التوصيل
+    provinceGroup.style.display = "none";
+    districtGroup.style.display = "none";
+    subDistrictGroup.style.display = "none";
+    locationGroup.style.display = "none";
+    deliveryPriceGroup.style.display = "none";
+  } else if (selectedMethod === "delivery") {
+    // إظهار جميع الحقول
+    provinceGroup.style.display = "";
+    districtGroup.style.display = "";
+    subDistrictGroup.style.display = "";
+    locationGroup.style.display = "";
+    deliveryPriceGroup.style.display = "";
+  }
+}
+</script>
+
+</body>
+
+</html>
+
